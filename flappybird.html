@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>威塔伦之爱的flappybird</title>
+		<style type="text/css">			
+			@-webkit-keyframes headermove{
+				0%{
+					transform: translate(0,0);
+					-webkit-transform: translate(0,0);
+					-moz-transform: translate(0,0);
+					-ms-transform: translate(0,0);
+					-o-transform: translate(0,0);					
+				}
+				100%{
+					transform: translate(0,-30px);
+					-webkit-transform: translate(0,-30px);
+					-moz-transform: translate(0,-30px);
+					-ms-transform: translate(0,-30px);
+					-o-transform: translate(0,-30px);
+				}
+			}
+			@keyframes headermove{
+				0%{
+					transform: translate(0,0);
+					-webkit-transform: translate(0,0);
+					-moz-transform: translate(0,0);
+					-ms-transform: translate(0,0);
+					-o-transform: translate(0,0);					
+				}
+				100%{
+					transform: translate(0,-30px);
+					-webkit-transform: translate(0,-30px);
+					-moz-transform: translate(0,-30px);
+					-ms-transform: translate(0,-30px);
+					-o-transform: translate(0,-30px);
+				}
+			}
+			@-webkit-keyframes fly{
+				0%{
+					background: url(img/bird0.png);
+				}
+				100%{
+					background: url(img/bird1.png);
+				}
+			}
+			@keyframes fly{
+				0%{
+					background: url(img/bird0.png);
+				}
+				100%{
+					background: url(img/bird1.png);
+				}
+			}
+			@-webkit-keyframes slidermove{
+				from{
+					transform: translate(0,0);
+					-webkit-transform: translate(0,0);
+					-moz-transform: translate(0,0);
+					-ms-transform: translate(0,0);
+					-o-transform: translate(0,0);
+										}
+				to{
+					transform: translate(-350px,0);
+					-webkit-transform: translate(-350px,0);
+					-moz-transform: translate(-350px,0);
+					-ms-transform: translate(-350px,0);
+					-o-transform: translate(-350px,0);					
+				  }
+			}
+			@keyframes slidermove{
+				from{
+					transform: translate(0,0);
+					-webkit-transform: translate(0,0);
+					-moz-transform: translate(0,0);
+					-ms-transform: translate(0,0);
+					-o-transform: translate(0,0);
+										}
+				to{
+					transform: translate(-350px,0);
+					-webkit-transform: translate(-350px,0);
+					-moz-transform: translate(-350px,0);
+					-ms-transform: translate(-350px,0);
+					-o-transform: translate(-350px,0);					
+				  }
+			}
+			*{margin: 0;padding: 0;}
+			#wrap{
+				position: relative;
+				width: 350px;
+				height: 480px;
+				margin: 10px auto;
+				overflow: hidden;
+				background: url(img/bg.jpg);
+				background-size: 100% 100%;				
+			}
+			#header{
+				position: absolute;
+				left: 60px;
+				top: 140px;
+				animation: headermove 1s alternate infinite;
+				-webkit-animation: headermove 1s alternate infinite;
+				-moz-animation: headermove 1s alternate infinite;
+				-ms-animation: headermove 1s alternate infinite;
+				-o-animation: headermove 1s alternate infinite;
+			}
+			#header span{
+				position: absolute;
+				top: 25px;
+				right: 0;
+				background: url(img/bird0.png);
+				width: 40px;
+				height: 26px;
+				animation: fly 1s linear infinite;
+				-webkit-animation: fly 1s linear infinite;
+				-moz-animation: fly 1s linear infinite;
+				-ms-animation: fly 1s linear infinite;
+				-o-animation: fly 1s linear infinite;				
+			}			
+			#start{
+				position: absolute;
+				top: 300px;
+				left: 125px;
+				cursor: pointer;
+			}
+			#sliderwrap{
+				position: absolute;
+				top: 423px;
+				width: 350px;
+				height: 14px;
+				
+			}
+			#slider{
+				width: 9999px;
+				height: 14px;
+				animation: slidermove 3s linear infinite;
+				-webkit-animation: slidermove 3s linear infinite;
+				-moz-animation: slidermove 3s linear infinite;
+				-ms-animation: slidermove 3s linear infinite;
+				-o-animation: slidermove 3s linear infinite;
+			}			
+			#score{
+				position: absolute;
+				top: 30px;
+				left: 155px;
+                font-size: 50px;
+                z-index: 99;
+                display: none;
+			}
+			#game{
+				position: absolute;
+				top: 150px;
+				left: 60px;
+				display: none;
+				z-index: 99;
+			}
+			#bird{
+				position: absolute;
+				top: 200px;
+				left: 100px;
+				display: none;
+				z-index: 99;
+			}
+			#ductwrap li{
+				position: absolute;
+				left: 0;
+				width: 62px;
+				height: 423px;
+				list-style: none;
+			}
+			#duct_up{
+				position: absolute;
+				top: 0;
+				width: 62px;
+				height: 200px;
+				background: url(img/up_mod.png) repeat-y;
+			}
+			#duct_up img{
+				position: absolute;
+				bottom: 0;
+			}
+			#duct_down{
+				position: absolute;
+				bottom: 0;
+				width: 62px;
+				height: 123px;
+				background: url(img/down_mod.png) repeat-y;
+			}
+			#duct_down img{
+				position: absolute;
+				top: 0;
+			}
+			.die{
+				transition: all 1s linear;
+			}
+		</style>
+	</head>
+	<body>
+		<audio src="game_music.mp3" autoplay="autoplay" preload="auto" id="music"></audio>
+		<div id="wrap">
+			<div id="header">
+				<img src="img/head.jpg" alt="" />
+				<span></span>
+			</div>
+			<div id="start"><img src="img/start.jpg" alt="" /></div>
+			<div id="game"><img src="img/game_over.jpg" alt="" /></div>
+			<div id="sliderwrap">
+				<div id="slider">
+					<img src="img/banner.jpg" alt="" />
+					<img src="img/banner.jpg" alt="" />
+				</div>
+			</div>
+			<div id="score">0</div>
+			<div id="bird"><img src="img/down_bird0.png" alt="" /></div>
+			<ul id="ductwrap">
+				<!--<li>
+					<div id="duct_up"><img src="img/up_pipe.png" alt="" /></div>
+					<div id="duct_down"><img src="img/down_pipe.png" alt="" /></div>
+				</li>-->
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		window.onload = function(){
+			var header = document.getElementById("header");
+			var startBtn = document.getElementById("start");
+			var scoreDiv = document.getElementById("score");
+			var bird = document.getElementById("bird");
+			var ductwrap = document.getElementById("ductwrap");
+			var game = document.getElementById("game");
+			var music = document.getElementById("music");
+			var score = 0;
+			var moveBol = true;  //用来判断管道的移动,开关
+			var clickBol = true;  //用来判断点击事件,当小鸟死亡后,将点击事件关闭
+			startBtn.onclick = function(){
+				bird.style.display = 'block';
+				header.style.display = 'none';
+				startBtn.style.display = 'none';
+				scoreDiv.style.display = 'block';
+				bird.speed = 0;
+				//小鸟的变化
+				bird.move = setInterval(function(){
+					//小鸟的下降				
+					bird.speed += 0.5;
+					if(bird.speed>=15){
+						bird.speed = 15;
+					}
+					if(bird.offsetTop>=390){
+						clearInterval(bird.move);
+						bird.speed = 0;//让小鸟的速度降到最低
+						moveBol = false;
+						game.style.display = 'block';
+						music.src = 'game_over.mp3';
+					}else if(bird.offsetTop<30){
+						bird.style.top = 30 + 'px';
+					}
+					bird.style.top = bird.offsetTop + bird.speed + "px";
+					
+					if(bird.speed<0){
+						bird.firstElementChild.src = 'img/up_bird0.png';
+					}else{
+						bird.firstElementChild.src = 'img/down_bird0.png';
+					}
+					var ductAll = document.querySelectorAll("#ductwrap li div");//获取上下两部分管道
+//					console.log(ductAll.length);
+					for(var i=0;i<ductAll.length;i++){
+						var bol = crashFn(bird,ductAll[i]);//碰撞检测
+					   if(bol){
+							clearInterval(bird.move); //清除小鸟的移动
+							moveBol = false; //关闭管道的移动
+							clickBol = false; //关闭点击事件
+							clearInterval(createDuct); //清除管道的创建
+							game.style.display = 'block';
+							bird.style.top = 395 + 'px';
+							bird.className = 'die'; //让小鸟死的更加生动
+							music.src = 'game_over.mp3'; //更换音乐
+						}
+					}					
+				},30)
+				//小鸟上升
+					document.onmousedown = function(ev){
+						var e = ev || window.event;
+						e.preventDefault();
+						if(clickBol == false){
+							return;
+						}
+						bird.speed = -6.5;
+						music.src = 'bullet.mp3';
+					}
+				//管道的生成及运动
+				createDuct = setInterval(function(){
+					var duct = document.createElement('li');
+					var upHeight = randFn(100,200);
+//					console.log(upHeight);
+					duct.innerHTML = '<div id="duct_up" style="height:'+upHeight+'px"><img src="img/up_pipe.png" alt="" /></div><div id="duct_down" style="height:'+(323-upHeight)+'px"><img src="img/down_pipe.png" alt="" /></div>'
+					ductwrap.appendChild(duct);
+					//管道的移动
+					duct.l = 350;
+					duct.style.left = duct.l + 'px';
+					duct.move = setInterval(function(){
+						if(moveBol == false){
+							return;
+						}
+						duct.l -= 2;
+						duct.style.left = duct.l + 'px';
+						if(duct.l == -62){
+							clearInterval(duct.move);
+							ductwrap.removeChild(duct);
+						}
+						//判断得分情况
+						if(duct.l == 38){
+							score ++;
+							scoreDiv.innerHTML = score;
+						}
+					},30)
+				},3000)
+			}
+		}
+		//随机函数封装
+		function randFn(min,max){
+			return parseInt(Math.random()*(max - min + 1)+min);
+		}
+		//碰撞效果函数封装
+		function crashFn(obj1,obj2){
+			//obj1
+			var div1L = obj1.offsetLeft;
+			var div1R = div1L + obj1.offsetWidth;
+			var div1T = obj1.offsetTop;
+			var div1B = div1T + obj1.offsetHeight;
+			//obj2
+			var div2L = obj2.parentNode.offsetLeft;
+			var div2R = div2L + obj2.offsetWidth;
+			var div2T = obj2.offsetTop;
+			var div2B = div2T + obj2.offsetHeight;
+			//碰撞检测
+			if(div1L<=div2R && div1R>=div2L && div1T<=div2B && div1B>=div2T){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	</script>
+</html>
