@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="min.css">
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background: url(1.jpg) no-repeat;
+			background-size: 100%;
+		}
+		.swiper-container{
+			width: 800px;
+			height: 500px;
+			/*border: 1px solid #ccc;*/
+			margin: 20px auto;
+		}
+		.div1{
+			background: red;
+			opacity: .5
+
+		}
+		.div2{
+			background: #ff2d51;
+			opacity: .5
+		}
+		.div3{
+			background: #ff4777;
+			opacity: .5
+
+		}
+		.div1,.div2,.div3{
+			line-height: 500px;
+			text-align: center;
+			font-size: 60px;
+			color: black;
+		}
+	</style>
+</head>
+<body>
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide div1">Love</div>
+    <div class="swiper-slide div2">U</div>
+    <div class="swiper-slide div3">Forever</div>
+  </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide div4">
+    	<img src="2.jpg" alt="">
+    </div>
+    <div class="swiper-slide div5">
+		<img src="3.jpg" alt="">
+    </div>
+    <div class="swiper-slide div6">
+		<img src="5.jpg" alt="" style="width:641px;height:854px;">
+    </div>
+  </div>
+  <audio src="马頔 - 傲寒.mp3" autoplay="autoplay" loop="loop" controls="controls"></audio>
+</div>
+<script src="min.js"></script>
+<script> 
+if (true) {
+	alert("hello 女神！")
+	alert("七夕快乐！")
+	alert("我是你米先森的私人助理呢~（双手叉腰霸气状！）")
+	alert("还有不到两周时间就可以和你见面了哎~想想就替我家主人激动！O(∩_∩)O~~")
+	alert("是不是点确定点到手指酸辣酸辣的！（给你抱！抱！）")
+	alert("但是你不点你又看不到我主人做了个什么东西给你看，是不是好急？（歪嘴笑~）")
+	alert("嘿嘿嘿嘿嘿嘿嘿嘿嘿")
+	alert("嘿嘿嘿嘿嘿嘿嘿嘿嘿")
+	alert("嘿嘿嘿嘿嘿嘿嘿嘿嘿")
+	alert("我主人说我这样调戏你容易机毁身亡！（QAQ..毕竟你以后是我的女主人）")
+	alert("so...");
+	alert("还是不逗你玩了，给你看！给你看！给你看！（敞开胸口状=。=）")
+	alert("虽然很简单")
+	alert("巴（四声重读！）特（Same as the last one）！！！")
+	alert("很爱很爱你。")
+	alert('Love U Forever')
+	alert('Forever Love U')
+}
+var mySwiper = new Swiper('.swiper-container', {
+	autoplay: 2000,//可选选项，自动滑动
+	loop:true,
+	effect:'coverflow',
+	slidesPerView: 3,
+	centeredSlides: true,
+	pagination : '.swiper-pagination',
+	prevButton:'.swiper-button-prev',
+	nextButton:'.swiper-button-next',
+	autoplayDisableOnInteraction : false,
+
+})
+</script>
+</body>
+</html>
