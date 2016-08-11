@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background: darkgray;
+			}
+			#container{
+				width: 600px;
+				height: 400px;
+				margin: 50px auto;
+			}
+			/*canvas{
+				border: 1px solid black;
+			}*/
+			#score{
+				position: absolute;
+				left: 47%;
+				top: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<canvas id="snakeCanvas" width="600" height="400"></canvas>
+		</div>
+		<p id="score">分数: 0</p>
+	</body>
+	<!--js的文件名最好是用构造函数的类名命名-->
+	<script type="text/javascript" src="准备工作.js"></script>
+	<script type="text/javascript" src="background.js"></script>
+	<script type="text/javascript" src="snake.js"></script>
+	<script type="text/javascript" src="操作类.js"></script>
+	<script type="text/javascript" src="食物.js"></script>
+    	
+	<!--主要控制逻辑-->
+	<script type="text/javascript">
+		var bg = new BackgroundDraw();
+		bg.draw();
+		
+		var snake = new Snake();
+		snake.drawSnake();
+		
+		var aHandle = new HanldeSnake();
+		aHandle.hanlde(snake);
+		
+		var food = new Food();
+		food.drawFood();
+		
+		var timer = setInterval(function(){
+			lock = true;
+			ctx.clearRect(0,0,WIDTH,HEIGHT);
+			bg.draw();
+			snake.moveSnake();
+			food.drawFood();
+			snake.eatFood(food);
+			snake.die();
+		},200);
+		
+		
+	</script>
+</html>
